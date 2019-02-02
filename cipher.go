@@ -12,14 +12,14 @@ import (
   "strconv"
 )
 
-var MAX_UPPER rune = 90
-var MAX_LOWER rune = 122
-var MIN_UPPER rune = 65
-var MIN_LOWER rune = 97
+var MAX_UPPERCASE rune = 90
+var MAX_LOWERCASE rune = 122
+var MIN_UPPERCASE rune = 65
+var MIN_LOWERCASE rune = 97
 
 func validateRune(ascii rune) bool {
-  if (ascii < MIN_UPPER || ascii > MAX_LOWER) ||
-     (ascii < MIN_LOWER && ascii > MAX_UPPER) {
+  if (ascii < MIN_UPPERCASE || ascii > MAX_LOWERCASE) ||
+     (ascii < MIN_LOWERCASE && ascii > MAX_UPPERCASE) {
        return false
   }
   return true
@@ -31,15 +31,15 @@ func getAscii(ascii rune, offset rune) rune {
   isValid := validateRune(ascii)
   if (isValid) {
     var newAscii rune = ascii + offset
-    if (newAscii >= MIN_UPPER && newAscii <= MAX_UPPER) ||
-       (newAscii >= MIN_LOWER && newAscii <= MAX_LOWER) {
+    if (newAscii >= MIN_UPPERCASE && newAscii <= MAX_UPPERCASE) ||
+       (newAscii >= MIN_LOWERCASE && newAscii <= MAX_LOWERCASE) {
          result = newAscii
-    } else if (newAscii > MAX_LOWER) {
-      difference := newAscii - MAX_LOWER
-      result = (MIN_LOWER - 1) + difference
-    } else if (newAscii > MAX_UPPER) {
-      difference := newAscii - MAX_UPPER
-      result = (MIN_UPPER - 1) + difference
+    } else if (newAscii > MAX_LOWERCASE) {
+      difference := newAscii - MAX_LOWERCASE
+      result = (MIN_LOWERCASE - 1) + difference
+    } else if (newAscii > MAX_UPPERCASE) {
+      difference := newAscii - MAX_UPPERCASE
+      result = (MIN_UPPERCASE - 1) + difference
     }
   } else {
     result = ascii
